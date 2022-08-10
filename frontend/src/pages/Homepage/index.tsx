@@ -5,6 +5,7 @@ import {
   } from "react-router-dom";
 import Card from '../../components/Card';
 import HomePokedex from "../../components/HomePokedex";
+import PokemonsListing from "../../components/PokemonsListing";
 
 function Homepage() {
     return (
@@ -12,6 +13,9 @@ function Homepage() {
             <Routes>
                 <Route path="/" element={<HomePokedex/>} />
                 <Route path="/regions" element={<Card />} />
+                <Route path="/pokemons">
+                    <Route path=":pokemonRegionId" element={<PokemonsListing/>} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );

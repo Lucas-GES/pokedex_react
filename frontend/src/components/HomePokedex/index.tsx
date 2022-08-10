@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../HomePokedex/styles.css';
 
 function HomePokedex() {
@@ -5,7 +6,9 @@ function HomePokedex() {
         <div className="home-container">
             <h1>Web Pokedex</h1>
             <img src={require("../../assets/img/pokedex.png")} alt="Pokedex" />
-            <a href='/regions' type='button'>Enter</a>
+            <Link to={`/regions`}>
+                <button type='button'>Enter</button>
+            </Link>
         </div>
     );
 }
