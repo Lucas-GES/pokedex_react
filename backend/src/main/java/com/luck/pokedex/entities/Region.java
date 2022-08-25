@@ -50,6 +50,10 @@ public class Region {
         this.name = name;
     }
 
+    public List<Pokemon> getPokemons() {
+        return pokemons;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
