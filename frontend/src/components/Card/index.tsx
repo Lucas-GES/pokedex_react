@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import '../Card/styles.css';
+import { BASE_URL } from "../../utils/requests";
+import axios from 'axios';
 
 function Card() {
+
+    axios.get(`${BASE_URL}/region`)
+        .then(response => {
+            console.log(response.data);
+        })
+
     return (
         <div className='row list-of-cards'>
             <div className="col-sm-3">

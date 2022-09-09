@@ -1,5 +1,7 @@
 package com.luck.pokedex.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,22 +12,22 @@ public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String img;
-    private String name;
-    private String type;
+    private String image;
+    private String nome;
+    private String tipo;
 
     @ManyToOne
-    @JoinColumn(name = "region_id", nullable = false)
+    @JoinColumn(name = "region_id")
     private Region region;
 
     public Pokemon() {
     }
 
-    public Pokemon(Long id, String img, String name, String type, Region region) {
+    public Pokemon(Long id, String image, String nome, String tipo, Region region) {
         this.id = id;
-        this.img = img;
-        this.name = name;
-        this.type = type;
+        this.image = image;
+        this.nome = nome;
+        this.tipo = tipo;
         this.region = region;
     }
 
@@ -37,36 +39,32 @@ public class Pokemon {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public String getImage() {
+        return image;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setimage(String image) {
+        this.image = image;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getType() {
-        return type;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void settipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Region getRegion() {
         return region;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
     }
 
     @Override
@@ -74,21 +72,21 @@ public class Pokemon {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pokemon pokemon = (Pokemon) o;
-        return id.equals(pokemon.id) && img.equals(pokemon.img) && name.equals(pokemon.name) && type.equals(pokemon.type) && region.equals(pokemon.region);
+        return id.equals(pokemon.id) && image.equals(pokemon.image) && nome.equals(pokemon.nome) && tipo.equals(pokemon.tipo) && region.equals(pokemon.region);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, img, name, type, region);
+        return Objects.hash(id, image, nome, tipo, region);
     }
 
     @Override
     public String toString() {
         return "Pokemon{" +
                 "id=" + id +
-                ", img='" + img + '\'' +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + nome + '\'' +
+                ", tipo='" + tipo + '\'' +
                 ", region=" + region +
                 '}';
     }

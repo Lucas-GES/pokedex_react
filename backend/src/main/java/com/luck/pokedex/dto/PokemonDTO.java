@@ -24,9 +24,9 @@ public class PokemonDTO {
 
     public PokemonDTO(Pokemon pokemon){
         this.id = pokemon.getId();
-        this.img = pokemon.getImg();
-        this.name = pokemon.getName();
-        this.type = pokemon.getType();
+        this.img = pokemon.getImage();
+        this.name = pokemon.getNome();
+        this.type = pokemon.getTipo();
         this.region = pokemon.getRegion();
     }
 

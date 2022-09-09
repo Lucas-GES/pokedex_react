@@ -1,5 +1,7 @@
 package com.luck.pokedex.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -11,19 +13,20 @@ public class Region {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String img;
-    private String name;
+    private String image;
+    private String nome;
 
     @OneToMany(mappedBy = "region")
+    @JsonIgnore
     private List<Pokemon> pokemons;
 
     public Region() {
     }
 
-    public Region(Long id, String img, String name) {
+    public Region(Long id, String image, String nome) {
         this.id = id;
-        this.img = img;
-        this.name = name;
+        this.image = image;
+        this.nome = nome;
     }
 
     public Long getId() {
@@ -34,20 +37,20 @@ public class Region {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public String getImage() {
+        return image;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setimage(String image) {
+        this.image = image;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<Pokemon> getPokemons() {
@@ -59,20 +62,20 @@ public class Region {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Region region = (Region) o;
-        return id.equals(region.id) && img.equals(region.img) && name.equals(region.name);
+        return id.equals(region.id) && image.equals(region.image) && nome.equals(region.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, img, name);
+        return Objects.hash(id, image, nome);
     }
 
     @Override
     public String toString() {
         return "Region{" +
                 "id=" + id +
-                ", img='" + img + '\'' +
-                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + nome + '\'' +
                 '}';
     }
 }

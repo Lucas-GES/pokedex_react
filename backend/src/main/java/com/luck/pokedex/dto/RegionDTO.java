@@ -23,8 +23,8 @@ public class RegionDTO {
 
     public RegionDTO(Region region) {
         this.id = region.getId();
-        this.img = region.getImg();
-        this.name = region.getName();
+        this.img = region.getImage();
+        this.name = region.getNome();
     }
 
     public Long getId() {
