@@ -1,5 +1,6 @@
 export type Region = {
     id: number;
-    image: string;
-    nome: string;
+    img: string;
+    name: string;
+    pokemonList: []
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/pokemon")
+@RequestMapping(value = "/pokemons")
 public class PokemonController {
 
     @Autowired

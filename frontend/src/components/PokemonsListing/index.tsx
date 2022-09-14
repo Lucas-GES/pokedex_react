@@ -1,54 +1,41 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Pokemon } from '../../types/pokemon';
+import { BASE_URL } from '../../utils/requests';
 import '../PokemonsListing/styles.css';
+
 
 function PokemonsListing() {
 
-    const pokemon = {
-        id: 1,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuBDo6rr7lkxnEqkWdK_9OG9H9G3V5jJEfobig4JFo&s",
-        name: "Snorlax",
-        regionId: 1,
-        type: "Normal"
-    };
+    const location = useLocation();
+    const data = location.state;
+
+    const [pokemon, setRegion] = useState<Pokemon[]>([]);
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/pokemons/${data}`)
+            .then(response => {
+                setRegion(response.data);
+                console.log(response.data);
+            })
+    }, [data]);
 
     return (
         <div className='row list-of-cards'>
-            <div className="col-sm-3">
-                <div className="card">
-                    <img src={pokemon.image} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h3 className="card-title">{pokemon.name}</h3>
-                        <h5>Type: {pokemon.type}</h5>
+            {pokemon.map(pk => {
+                return (
+                    <div key={pk.id} className="col-sm-3">
+                        <div className="card">
+                            <img className="card-img-top" src={`${pk.img}`} alt="..." />
+                            <div className="card-body">
+                                <h3 className="card-title">{pk.name}</h3>
+                                <h5>Type: {pk.type}</h5>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div className="col-sm-3">
-                <div className="card">
-                    <img src={pokemon.image} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h3 className="card-title">{pokemon.name}</h3>
-                        <h5>Type: {pokemon.type}</h5>
-                    </div>
-                </div>
-            </div>
-            <div className="col-sm-3">
-                <div className="card">
-                    <img src={pokemon.image} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h3 className="card-title">{pokemon.name}</h3>
-                        <h5>Type: {pokemon.type}</h5>
-                    </div>
-                </div>
-            </div>
-            <div className="col-sm-3">
-                <div className="card">
-                    <img src={pokemon.image} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h3 className="card-title">{pokemon.name}</h3>
-                        <h5>Type: {pokemon.type}</h5>
-                    </div>
-                </div>
-            </div>
+                )
+            })}
         </div>
     );
 }
